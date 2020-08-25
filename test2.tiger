@@ -1,5 +1,2 @@
-var  table := intArray[100] 
-var  table := intArray[100] 
+let type rec = { val : int } type rec_arr = array of rec  var  table := rec_arr[2]  in for i := 0 to 1 do table[i] := rec { val = 42 }; table[0].val := 51/*sdsfv*/end
 
-var arr2 := intArray[10] 
-var ar2r := intArray[10] 

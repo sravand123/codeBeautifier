@@ -4,7 +4,7 @@ struct
 
 fun printspace 0 =""
 |printspace space  = "   "^(printspace (space-1));
-fun indent space (Ast.ASS (x,y)) = (printspace space)^(indent space x)^":="^ (indent space y)^";"
+fun indent space (Ast.ASS (x,y)) = (printspace space)^(indent space x)^":="^ (indent space y)
 	|indent space (Ast.COMP (x,z,y)) = (indent space x)^(Ast.comptostring z)^ (indent space y)
 	| indent space (Ast.Op (x,z,y)) = ((indent space x)^(Ast.binOpToString z)^ (indent space y))
 	| indent space (Ast.VAR x) = x
@@ -29,7 +29,7 @@ fun indent space (Ast.ASS (x,y)) = (printspace space)^(indent space x)^":="^ (in
 	|indent space (Ast.METHODCLASS (id,tylst,exp)) = (printspace space)^"method " ^(indent space id)^"(" ^(tylist space tylst) ^") = "^(indent space exp)
 	|indent space (Ast.METHODCLASSTYPE (id1,tylst,id2,exp)) = (printspace space)^"method " ^(indent space id1)^"(" ^(tylist space tylst) ^") :"^(indent space id2) ^"="^ (indent space exp) 
  and indentlist space [] = ""
-	| indentlist space (x::xs) =  (indent space x^";\n"^ indentlist space xs)
+	| indentlist space (x::xs) =  (indent space x^"\n"^ indentlist space xs)
  and recordlist space [] = ""
 	| recordlist space [x] = indent space x
 	|recordlist  space (x::xs) =  (indent space x^", "^ recordlist space xs)
